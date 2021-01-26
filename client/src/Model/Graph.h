@@ -17,6 +17,7 @@ public:
 
 private:
     vector<Node> nodes_;
+
 };
 
 

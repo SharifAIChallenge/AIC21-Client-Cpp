@@ -16,12 +16,12 @@ void Node::setOwner(Owner owner) {
     owner_ = owner;
 }
 
-int Node::getPower() const {
-    return power_;
+int Node::getValue() const {
+    return value_;
 }
 
-void Node::setPower(int power) {
-    power_ = power;
+void Node::setValue(int value) {
+    value_ = value;
 }
 
 vector<Node> Node::getNeighbours() const {
@@ -30,4 +30,12 @@ vector<Node> Node::getNeighbours() const {
 
 void Node::setNeighbours(vector<Node> neighbours) {
     neighbours_ = neighbours;
+}
+
+vector<Node> Node::getNeighboursByOwner(Owner owner) {
+    vector<Node> out;
+    for(Node neighbour : neighbours_)
+        if(neighbour.getOwner() == owner)
+            out.push_back(neighbour);
+    return out;
 }

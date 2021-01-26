@@ -21,18 +21,20 @@ public:
 
     void setOwner(Owner owner);
 
-    int getPower() const;
+    int getValue() const;
 
-    void setPower(int power);
+    void setValue(int value);
 
     vector<Node> getNeighbours() const;
 
     void setNeighbours(vector<Node> neighbours);
 
+    vector<Node> getNeighboursByOwner(Owner owner);
+
 private:
     string id_;
     Owner owner_;
-    int power_;
+    int value_;
     vector<Node> neighbours_;
 };
 
