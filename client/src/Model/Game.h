@@ -23,15 +23,29 @@ public:
 
     int getTurn() const;
 
+    int getWinner() const;
+
+    void nextTurn() const;
+
+    Owner getCurrentPlayer() const;
+
+    Owner getOtherPlayer() const;
+
     void attack(Node myNode, Node enemyNode);
 
-    void movePower(Node myNode, Node enemyNode);
+    void transitValue(Node myNode, Node enemyNode);
 
 private:
     Graph graph_;
     int myScore_;
     int enemyScore_;
     int turn_;
+    int winner_;
+    bool has_ended_;
+
+    static Owner getPlayerByTurn(int turn);
+    
+    void declareWinner(int winner);
 };
 
 
