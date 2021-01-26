@@ -2,7 +2,7 @@
 #define AIC21_CLIENT_CPP_ENUMS_H
 
 enum Owner {
-    MINE,
+    ME,
     ENEMY,
     FREE
 };
