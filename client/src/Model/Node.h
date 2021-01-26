@@ -31,6 +31,10 @@ public:
 
     vector<Node> getNeighboursByOwner(Owner owner);
 
+    bool isAdjacentTo(string nodeId);
+
+    bool isAdjacentTo(Node node);
+
 private:
     string id_;
     Owner owner_;

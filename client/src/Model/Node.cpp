@@ -39,3 +39,14 @@ vector<Node> Node::getNeighboursByOwner(Owner owner) {
             out.push_back(neighbour);
     return out;
 }
+
+bool Node::isAdjacentTo(string nodeId) {
+    for(Node neighbour : neighbours_)
+        if(neighbour.getId() == nodeId)
+            return true;
+    return false;
+}
+
+bool Node::isAdjacentTo(Node node) {
+    return isAdjacentTo(node.getId());
+}
