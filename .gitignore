@@ -125,3 +125,5 @@ modules.xml
 
 build/*
 Build/*
+
+**/build/**
