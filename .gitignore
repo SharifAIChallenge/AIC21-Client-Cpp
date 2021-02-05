@@ -127,3 +127,5 @@ build/*
 Build/*
 
 **/build/**
+
+.vscode/**
