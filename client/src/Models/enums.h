@@ -9,18 +9,26 @@ enum AntTeam {
 enum AntType {
     SARBAAZ,
     KARGAR
-}
+};
 
 enum CellType {
     BASE,
     EMPTY,
     WALL
-}
+};
 
 enum ResourceType {
     BREAD,
     GRASS,
     NONE
-}
+};
+
+enum Direction {
+    CENTER,
+    RIGHT,
+    UP,
+    LEFT,
+    DOWN
+};
 
 #endif //AIC21_CLIENT_CPP_ENUMS_H
