@@ -11,15 +11,14 @@ class ChatBox {
 
     private:
 
-    vector<Chat> all_chats_;
+    vector<Chat*> all_chats_;
 
 
     public:
 
     ChatBox(vector<Chat> allChats);
-    vector<Chat> getAllChatsOfTurn(int turnNumber);
-    vector<Chat> getAllChats();
-
+    vector<Chat*> getAllChatsOfTurn(int turnNumber);
+    vector<Chat*> getAllChats();
 }
 
 #endif //AIC21_CLIENT_CPP_CHATBOX_H
