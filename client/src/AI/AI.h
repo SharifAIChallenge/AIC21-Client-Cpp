@@ -2,7 +2,7 @@
 #define AIC21_CLIENT_CPP_AI_H
 
 #include "Models/Game.h"
-#include "Models/Answer.h"
+#include "Models/dto/Answer.h"
 
 class AI {
 public:
