@@ -16,6 +16,7 @@ class ChatBox {
 
     public:
 
+    ChatBox() = default;
     ChatBox(vector<Chat> allChats);
     vector<Chat*> getAllChatsOfTurn(int turnNumber);
     vector<Chat*> getAllChats();

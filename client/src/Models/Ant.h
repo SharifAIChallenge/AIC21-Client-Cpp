@@ -12,6 +12,7 @@ class Ant {
 
     public:
 
+    Ant() = default;
     Ant(AntType type, AntTeam team);
     Ant(AntType type, AntTeam team, int viewDistance, Map map, CurrentStateMessage state);
     int getX();
