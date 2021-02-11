@@ -18,11 +18,11 @@ class Ant {
     int getY();
     int getHealth();
     int getViewDistance();
-    Cell getNeighborCell(int xStep, int yStep);
-    Cell getCurrentCell();
+    Cell* getNeighborCell(int xStep, int yStep);
+    Cell* getCurrentCell();
     AntType getType();
     AntTeam getTeam();
-    Resource getCarryingResource();
+    Resource* getCarryingResource();
 
 
     private:
@@ -33,9 +33,9 @@ class Ant {
     int view_distance_;
     AntType type_;
     AntTeam team_;
-    Resource carrying_resource_;
-    Map visible_map_;
-    Cell getMapCell(int dx, int dy);
+    Resource* carrying_resource_;
+    Map* visible_map_;
+    Cell* getMapCell(int dx, int dy);
 };
 
 #endif //AIC21_CLIENT_CPP_ANT_H
