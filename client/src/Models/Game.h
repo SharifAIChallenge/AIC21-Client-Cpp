@@ -1,11 +1,11 @@
 #ifndef AIC21_CLIENT_CPP_GAME_H
 #define AIC21_CLIENT_CPP_GAME_H
 
-#include "enums.h"
-#include "Ant.h"
-#include "ChatBox.h"
-#include "Game.h"
-#include "GameConfigMessage.h"
+#include "Models/enums.h"
+#include "Models/Ant.h"
+#include "Models/ChatBox.h"
+#include "Models/Game.h"
+#include "Models/dto/GameConfigMessage.h"
 
 
 class Game {

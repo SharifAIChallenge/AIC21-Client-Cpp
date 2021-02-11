@@ -3,8 +3,8 @@
 
 using namespace std;
 #include <vector>
-#include "ClientAnt.h"
-#include "Resource.h"
+#include "Models/dto/ClientAnt.h"
+#include "Models/Resource.h"
 
 class ClientCell {
 

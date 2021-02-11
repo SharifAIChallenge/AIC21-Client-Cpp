@@ -1,7 +1,7 @@
 #ifndef AIC21_CLIENT_CPP_RESOURCE_H
 #define AIC21_CLIENT_CPP_RESOURCE_H
 
-#include "enums.h"
+#include "Models/enums.h"
 
 class Resource {
 
