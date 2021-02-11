@@ -7,7 +7,7 @@ enum AntTeam {
 };
 
 enum AntType {
-    SARBAAZ,
+    SARBAZ,
     KARGAR
 };
 

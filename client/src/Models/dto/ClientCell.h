@@ -4,7 +4,7 @@
 using namespace std;
 #include <vector>
 #include "ClientAnt.h"
-
+#include "Resource.h"
 
 class ClientCell {
 
@@ -20,6 +20,8 @@ class ClientCell {
 
     public:
 
+    ClientCell() = default;
+    ~ClientCell() = default;
     int getXCoordinate();
     int getYCoordinate();
     CellType getCellType();
