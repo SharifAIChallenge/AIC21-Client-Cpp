@@ -6,6 +6,7 @@
 #include "Resource.h"
 #include "Cell.h"
 #include "Map.h"
+#include "CurrentStateMessage.h"
 
 class Ant {
 

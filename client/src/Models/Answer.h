@@ -12,6 +12,7 @@ class Answer {
 
     Answer(Direction direction, string message, int messageValue);
     Answer(Direction direction);
+    ~Answer() = default;
     Direction getDirection();
     void setDirection(Direction direction);
     string getMessage();
@@ -24,7 +25,7 @@ class Answer {
 
     Direction direction_;
     string message_;
-    int messageValue_;
+    int message_value_;
 };
 
 #endif //AIC21_CLIENT_CPP_ANSWER_H

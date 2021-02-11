@@ -5,6 +5,7 @@
 #include "Ant.h"
 #include "ChatBox.h"
 #include "Game.h"
+#include "GameConfigMessage.h"
 
 
 class Game {
