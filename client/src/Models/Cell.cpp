@@ -2,14 +2,16 @@
 
 
 Cell::Cell(CellType type, int xCoordinate, int yCoordinate, Resource resource) {
+    Cell();
     x_ = xCoordinate;
     y_ = yCoordinate;
     type_ = type;
-    resource_ = resource;
+    resource_ = &resource;
     present_ants_;
 }
 
 Cell::Cell(const Cell& obj) {
+    Cell();
     x_ = obj.x_;
     y_ = obj.y_;
     type_ == obj.type_;
@@ -29,7 +31,7 @@ CellType Cell::getType() {
     return type_;
 }
 
-Resource Cell::getResource() {
+Resource* Cell::getResource() {
     return resource_;
 }
 

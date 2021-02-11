@@ -11,23 +11,24 @@ class Cell {
 
     public:
 
+    Cell() = default;
+    ~Cell() = default;
     Cell(CellType type, int xCoordinate, int yCoordinate, Resource resource);
     Cell(const Cell&);
-    ~Cell() = default;
     int getX();
     int getY();
     CellType getType();
-    Resource getResource();
+    Resource* getResource();
     vector<const Ant*> getPresentAnts();
     void addAntToCell(Ant ant);
 
 
     private:
 
-    CellType type_;
     int x_;
     int y_;
-    Resource resource_;
+    CellType type_;
+    Resource* resource_ = nullptr;
     vector<const Ant*> present_ants_;
 };
 
