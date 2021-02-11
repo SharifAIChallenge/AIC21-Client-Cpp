@@ -2,7 +2,6 @@
 #define AIC21_CLIENT_CPP_CELL_H
 
 #include <vector>
-#include <unordered_set>
 #include "enums.h"
 #include "Resource.h"
 #include "Ant.h"
@@ -19,17 +18,17 @@ class Cell {
     int getY();
     CellType getType();
     Resource getResource();
-    unordered_set<Ant> getPresentAnts();
+    vector<const Ant*> getPresentAnts();
     void addAntToCell(Ant ant);
 
 
     private:
 
-    CellType type;
+    CellType type_;
     int x_;
     int y_;
     Resource resource_;
-    unordered_set<Ant> presentAnts_;
+    vector<const Ant*> present_ants_;
 };
 
 
