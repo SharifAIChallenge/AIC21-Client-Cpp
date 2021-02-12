@@ -6,7 +6,7 @@
 #include "Models/ChatBox.h"
 #include "Models/Game.h"
 #include "Core/Message/Parse/GameConfigMessage.h"
-
+#include "Core/EventQueue.h"
 
 class Game {
 
@@ -25,11 +25,11 @@ class Game {
     int generate_kargar_;
     int generate_sarbaaz_;
     int rate_death_resource_;
-    Ant initialAntState(CurrentStateMessage stateMessage);
-
+    EventQueue &event_queue_;
 
     public:
 
+    explicit Game(EventQueue &eventQueue);
     Game() = default;
     Game(const Game&);
     void setCurrentState(CurrentStateMessage stateMessage);

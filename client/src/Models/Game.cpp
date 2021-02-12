@@ -1,20 +1,23 @@
 #include "Game.h"
 #include "enums.h"
 
-Ant Game::initialAntState(CurrentStateMessage stateMessage) {
-    vector<vector<Cell>> cells = stateMessage.getVisibleCells(map_height_, map_width_);
-    Map map(
-        cells,
-        map_width_,
-        map_height_,
-        attack_distance_,
-        stateMessage.getCurrentX(),
-        stateMessage.getCurrentY()
-    );
-    return Ant(ant_type_, ALLY, attack_distance_, map, stateMessage);
+// Ant Game::initialAntState(CurrentStateMessage stateMessage) {
+//     vector<vector<Cell>> cells = stateMessage.getVisibleCells(map_height_, map_width_);
+//     Map map(
+//         cells,
+//         map_width_,
+//         map_height_,
+//         attack_distance_,
+//         stateMessage.getCurrentX(),
+//         stateMessage.getCurrentY()
+//     );
+//     return Ant(ant_type_, ALLY, attack_distance_, map, stateMessage);
+// }
+
+Game::Game(EventQueue &event_queue) : event_queue_(event_queue) {
 }
 
-Game::Game(const Game& game) {
+Game::Game(const Game& game) : event_queue_(game.event_queue_) {
     ant_type_ = game.getAntType();
     map_width_ = game.getMapWidth();
     map_height_ = game.getMapHeight();
@@ -28,10 +31,10 @@ Game::Game(const Game& game) {
     rate_death_resource_ = game.getRateDeathResource();
 }
 
-void Game::setCurrentState(CurrentStateMessage stateMessage) {
-    chat_box_ = ChatBox(stateMessage.getChats());
-    ant_ = initialAntState(stateMessage);
-}
+// void Game::setCurrentState(CurrentStateMessage stateMessage) {
+//     chat_box_ = ChatBox(stateMessage.getChats());
+//     // ant_ = initialAntState(stateMessage);
+// }
 
 Ant Game::getAnt() const {
     return ant_;
