@@ -12,6 +12,8 @@ using namespace std;
 #include "AI/AI.h"
 #include "Core/EventQueue.h"
 
+using namespace std;
+
 /**
  * High level client logic is implemented here
  */
@@ -24,7 +26,7 @@ public:
      * @param token Authentication token to send to server
      * @param retry_delay Number of milliseconds to wait before retrying connection
      */
-    Controller(const std::string& host, uint16_t port, const std::string& token, unsigned retry_delay);
+    Controller(const string& host, uint16_t port, const string& token, unsigned retry_delay);
 
     /**
      * Destructor
@@ -47,7 +49,7 @@ private:
     void event_handling_loop() noexcept;
 
     /// Authentication token to send to server
-    std::string m_token;
+    string m_token;
 
     /// Number of milliseconds to wait before retrying connection
     unsigned m_retry_delay;
