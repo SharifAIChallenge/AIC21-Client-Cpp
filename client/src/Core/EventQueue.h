@@ -7,7 +7,9 @@
 #include <memory>
 #include <atomic>
 
-#include "Core/Message.h"
+#include "Core/Message/Message.h"
+
+using namespace std;
 
 
 class EventQueue final {
@@ -33,7 +35,7 @@ public:
      * @return nullptr if the waiting process is interrupted by a call to @see terminate
      * A unique_ptr to the message popped from queue otherwise
      */
-    std::unique_ptr<Message> pop();
+    unique_ptr<Message> pop();
 
     /**
      * Terminate the process, causing any thread that waits on @see pop to return
@@ -43,16 +45,16 @@ public:
 private:
 
     /// The actual queue holding messages
-    std::queue<std::unique_ptr<Message>> m_queue;
+    queue<unique_ptr<Message>> m_queue;
 
     /// The mutex used to synchronize access to @see m_queue
-    std::mutex m_mutex;
+    mutex m_mutex;
 
     /// The condition variable used to signal threads waiting to pop a message when a push happens
-    std::condition_variable m_cv;
+    condition_variable m_cv;
 
     /// The flag used to indicate if terminating is requested
-    std::atomic_bool m_terminating;
+    atomic_bool m_terminating;
 };
 
 #endif // AIC21_CLIENT_CPP_EVENTQUEUE_H
