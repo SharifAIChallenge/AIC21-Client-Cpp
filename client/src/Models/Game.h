@@ -5,7 +5,7 @@
 #include "Models/Ant.h"
 #include "Models/ChatBox.h"
 #include "Models/Game.h"
-#include "Models/dto/GameConfigMessage.h"
+#include "Core/Message/Parse/GameConfigMessage.h"
 
 
 class Game {
@@ -32,7 +32,6 @@ class Game {
 
     Game() = default;
     Game(const Game&);
-    void initGameConfig(GameConfigMessage configMessage);
     void setCurrentState(CurrentStateMessage stateMessage);
     Ant getAnt() const;
     AntType getAntType() const;
@@ -47,6 +46,8 @@ class Game {
     int getGenerateKargar() const;
     int getGenerateSarbaaz() const;
     int getRateDeathResource() const;
+
+    friend class GameConfigMessage;
 };
 
 #endif //AIC21_CLIENT_CPP_GAME_H

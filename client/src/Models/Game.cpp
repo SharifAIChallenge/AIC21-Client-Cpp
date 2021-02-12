@@ -14,7 +14,6 @@ Ant Game::initialAntState(CurrentStateMessage stateMessage) {
     return Ant(ant_type_, ALLY, attack_distance_, map, stateMessage);
 }
 
-
 Game::Game(const Game& game) {
     ant_type_ = game.getAntType();
     map_width_ = game.getMapWidth();
@@ -27,20 +26,6 @@ Game::Game(const Game& game) {
     generate_kargar_ = game.getGenerateKargar();
     generate_sarbaaz_ = game.getGenerateSarbaaz();
     rate_death_resource_ = game.getRateDeathResource();
-}
-
-void Game::initGameConfig(GameConfigMessage configMessage) {
-    ant_type_ = configMessage.getAntType();
-    map_width_ = configMessage.getMapWidth();
-    map_height_ = configMessage.getMapHeight();
-    base_x_ = configMessage.getBaseX();
-    base_y_ = configMessage.getBaseY();
-    health_kargar_ = configMessage.getHealthKargar();
-    health_sarbaaz_ = configMessage.getHealthSarbaaz();
-    attack_distance_ = configMessage.getAttackDistance();
-    generate_kargar_ = configMessage.getGenerateKargar();
-    generate_sarbaaz_ = configMessage.getGenerateSarbaaz();
-    rate_death_resource_ = configMessage.getRateDeathResource();
 }
 
 void Game::setCurrentState(CurrentStateMessage stateMessage) {

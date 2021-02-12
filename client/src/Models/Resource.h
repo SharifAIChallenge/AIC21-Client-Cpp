@@ -7,6 +7,7 @@ class Resource {
 
     public:
 
+    Resource() = default;
     Resource(ResourceType type, int amount);
     ResourceType getType();
     int getAmount();
