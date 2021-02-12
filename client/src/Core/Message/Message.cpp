@@ -8,6 +8,8 @@
 #include "Message.h"
 #include "Core/Message/Parse/ParseError.h"
 #include "Core/Message/Parse/GameConfigMessage.h"
+#include "Core/Message/Parse/CurrentStateMessage.h"
+#include "Core/Message/Parse/ShutdownMessage.h"
 
 using namespace std;
 
@@ -55,5 +57,9 @@ unique_ptr<Message> Message::CreateFromJsonString(const string &string_form) {
     //There are three types
     if (root["type"] == "3")
         return unique_ptr<GameConfigMessage>(new GameConfigMessage(root));
+    if (root["type"] == "4")
+        return unique_ptr<CurrentStateMessage>(new CurrentStateMessage(root));
+    if (root["type"] == "7")
+        return unique_ptr<ShutdownMessage>(new ShutdownMessage(root));
     throw ParseError("Unknown message type");
 }

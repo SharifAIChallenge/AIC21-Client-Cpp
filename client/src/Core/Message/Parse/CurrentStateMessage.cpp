@@ -132,5 +132,5 @@ vector<CellDTO> CurrentStateMessage::parseAroundCellsDTO() {
 }
 
 void CurrentStateMessage::updateGame(Game* game) {
-    // TODO update game
+    // TODO implement
 }
