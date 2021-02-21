@@ -1,7 +1,8 @@
 #include "Ant.h"
 #include "enums.h"
 
-Ant::Ant(AntType type, AntTeam team) {
+Ant::Ant(AntType type, AntTeam team)
+{
     type_ = type;
     team_ = team;
     carrying_resource_ = NULL;
@@ -11,7 +12,8 @@ Ant::Ant(AntType type, AntTeam team) {
     view_distance_ = -1;
 }
 
-Ant::Ant(AntType type, AntTeam team, int viewDistance, Map map, CurrentStateMessage state) {
+Ant::Ant(AntType type, AntTeam team, int viewDistance, Map map, CurrentStateMessage state)
+{
     type_ = type;
     team_ = team;
     carrying_resource_ = &state.getCurrentResource();
@@ -22,42 +24,52 @@ Ant::Ant(AntType type, AntTeam team, int viewDistance, Map map, CurrentStateMess
     view_distance_ = viewDistance;
 }
 
-int Ant::getX() {
+int Ant::getX()
+{
     return x_;
 }
 
-int Ant::getY() {
+int Ant::getY()
+{
     return y_;
 }
 
-int Ant::getHealth() {
+int Ant::getHealth()
+{
     return health_;
 }
 
-int Ant::getViewDistance() {
+int Ant::getViewDistance()
+{
     return view_distance_;
 }
 
-Cell* Ant::getNeighborCell(int xStep, int yStep) {
+Cell *Ant::getNeighborCell(int xStep, int yStep)
+{
     return getMapCell(xStep, yStep);
 }
 
-Cell* Ant::getCurrentCell() {
+Cell *Ant::getCurrentCell()
+{
     return getNeighborCell(0, 0);
 }
 
-AntType Ant::getType() {
+AntType Ant::getType()
+{
     return type_;
 }
 
-AntTeam Ant::getTeam() {
+AntTeam Ant::getTeam()
+{
     return team_;
 }
 
-Resource* Ant::getCarryingResource() {
+Resource *Ant::getCarryingResource()
+{
     return carrying_resource_;
 }
 
-Cell* Ant::getMapCell(int dx, int dy) {
-    return visible_map_ -> getCell(dx, dy, view_distance_);
+Cell *Ant::getMapCell(int dx, int dy)
+{
+    return visible_map_->getCell(dx, dy, view_distance_);
 }

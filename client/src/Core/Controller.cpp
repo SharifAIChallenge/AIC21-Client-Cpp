@@ -21,36 +21,38 @@ using namespace std;
 
 int Controller::thread_count = 0;
 
-Controller::Controller(const string& host, uint16_t port, const string& token, unsigned retry_delay)
-        : m_token(token)
-        , m_retry_delay(retry_delay)
-        , m_network(host, port)
-        , m_game(m_event_queue)
+Controller::Controller(const string &host, uint16_t port, const string &token, unsigned retry_delay)
+    : m_token(token), m_retry_delay(retry_delay), m_network(host, port), m_game(m_event_queue)
 {
     Logger::Get(LogLevel_DEBUG) << "Server is " << host << ":" << port << endl;
     Logger::Get(LogLevel_DEBUG) << "Authentication token is " << token << endl;
     Logger::Get(LogLevel_DEBUG) << "Retry delay is " << retry_delay << endl;
 }
 
-Controller::~Controller() {
+Controller::~Controller()
+{
     if (m_event_handling_thread.joinable())
         m_event_handling_thread.join();
     if (m_network.is_connected())
         m_network.disconnect();
 }
 
-void Controller::run() try {
+void Controller::run()
+try
+{
     Logger::Get(LogLevel_TRACE) << "Enter Controller::run" << endl;
 
     // Connect to the server
 
     constexpr size_t MAX_RETRY_COUNT = 3;
     for (size_t i = 1; i <= MAX_RETRY_COUNT && !m_network.is_connected(); ++i)
-        try {
+        try
+        {
             Logger::Get(LogLevel_INFO) << "Trying to connect #" << i << endl;
             m_network.connect();
         }
-        catch (NetworkError &e) {
+        catch (NetworkError &e)
+        {
             if (i == MAX_RETRY_COUNT)
                 throw;
             else
@@ -59,7 +61,7 @@ void Controller::run() try {
 
     Logger::Get(LogLevel_INFO) << "Connected" << endl;
     Logger::Get(LogLevel_TRACE) << "Sending authentication message" << endl;
-    m_network.send(AuthenticationMessage(m_token).toString());// about the authentication process
+    m_network.send(AuthenticationMessage(m_token).toString()); // about the authentication process
 
     // Now wait for init message
     Logger::Get(LogLevel_TRACE) << "Waiting for init message" << endl;
@@ -67,33 +69,37 @@ void Controller::run() try {
     // Start the event handling thread
     m_event_handling_thread = thread(&Controller::event_handling_loop, this);
 
-    while (m_network.is_connected()) {
+    while (m_network.is_connected())
+    {
         Logger::Get(LogLevel_TRACE) << "Waiting for 3,4,7 message" << endl;
 
         auto message = Message::CreateFromJsonString(m_network.receive());
 
-        if (GameConfigMessage* init_message = dynamic_cast<GameConfigMessage*>(message.get())) {
+        if (GameConfigMessage *init_message = dynamic_cast<GameConfigMessage *>(message.get()))
+        {
             Logger::Get(LogLevel_TRACE) << "Parsing init message" << endl;
 
             init_message->updateGame(&m_game);
-            Game* _game = new Game(m_game);
-//            Logger::Get(LogLevel_INFO) << "---delete---" << endl;
-//            delete _game;
-//            _game = new Game(m_game);
+            Game *_game = new Game(m_game);
+            //            Logger::Get(LogLevel_INFO) << "---delete---" << endl;
+            //            delete _game;
+            //            _game = new Game(m_game);
         }
 
-        else if (CurrentStateMessage* turn_message = dynamic_cast<CurrentStateMessage*>(message.get())) {
+        else if (CurrentStateMessage *turn_message = dynamic_cast<CurrentStateMessage *>(message.get()))
+        {
             Logger::Get(LogLevel_TRACE) << "Parsing turn message" << endl;
-            Game* _game = new Game(m_game); //copying from the initial game
+            Game *_game = new Game(m_game);  //copying from the initial game
             turn_message->updateGame(_game); //updating the new game
 
             Logger::Get(LogLevel_INFO) << "Received Action message from server" << endl;
 
-            thread* actionThread = new thread(Controller::turn_event, &m_client, _game, &(this->m_event_queue));
+            thread *actionThread = new thread(Controller::turn_event, &m_client, _game, &(this->m_event_queue));
             m_thread_list.push_back(actionThread);
         }
 
-        else if (ShutdownMessage* shutdown_message = dynamic_cast<ShutdownMessage*>(message.get())) {
+        else if (ShutdownMessage *shutdown_message = dynamic_cast<ShutdownMessage *>(message.get()))
+        {
             Logger::Get(LogLevel_INFO) << "Received shutdown message from server" << endl;
             // TODO : Decide about shutdown
             //Not running this on thread (It has to be blocking)
@@ -111,7 +117,8 @@ void Controller::run() try {
     m_network.disconnect();
 
     Logger::Get(LogLevel_INFO) << "Joining all threads" << endl;
-    for (thread * _thread : m_thread_list){
+    for (thread *_thread : m_thread_list)
+    {
         _thread->join();
         delete _thread;
     }
@@ -119,12 +126,15 @@ void Controller::run() try {
     Logger::Get(LogLevel_TRACE) << "Exit Controller::run" << endl;
 }
 
-catch (json::exception&) {
+catch (json::exception &)
+{
     throw ParseError("Malformed json string");
 }
 
-void Controller::event_handling_loop() noexcept {
-    while (m_network.is_connected()) {
+void Controller::event_handling_loop() noexcept
+{
+    while (m_network.is_connected())
+    {
         auto message = m_event_queue.pop();
         if (!message)
             break;
@@ -132,13 +142,18 @@ void Controller::event_handling_loop() noexcept {
     }
 }
 
-void Controller::turn_event(AI* client, Game* tmp_game, EventQueue *m_event_queue) {
+void Controller::turn_event(AI *client, Game *tmp_game, EventQueue *m_event_queue)
+{
     int THREAD_NUM = Controller::thread_count++;
-    try {
+    try
+    {
         Logger::Get(LogLevel_DEBUG) << "Launched action Thread #" << THREAD_NUM << endl;
         client->turn(tmp_game);
-    }catch(const char* err_msg){
-        Logger::Get(LogLevel_ERROR) << "Error in action Thread #" << THREAD_NUM << endl << err_msg << endl;
+    }
+    catch (const char *err_msg)
+    {
+        Logger::Get(LogLevel_ERROR) << "Error in action Thread #" << THREAD_NUM << endl
+                                    << err_msg << endl;
     }
 
     Logger::Get(LogLevel_TRACE) << "action:Sending end message" << endl;
@@ -149,12 +164,17 @@ void Controller::turn_event(AI* client, Game* tmp_game, EventQueue *m_event_queu
     Logger::Get(LogLevel_DEBUG) << "End of action Thread #" << THREAD_NUM << endl;
 }
 
-void Controller::end_event(AI *client, Game *tmp_game, EventQueue *m_event_queue) {
-    try {
+void Controller::end_event(AI *client, Game *tmp_game, EventQueue *m_event_queue)
+{
+    try
+    {
         Logger::Get(LogLevel_DEBUG) << "Launched end blocking function" << endl;
         client->end(tmp_game);
-    }catch(const char* err_msg){
-        Logger::Get(LogLevel_ERROR) << "Error in end blocking function" << endl << err_msg << endl;
+    }
+    catch (const char *err_msg)
+    {
+        Logger::Get(LogLevel_ERROR) << "Error in end blocking function" << endl
+                                    << err_msg << endl;
     }
     delete tmp_game;
     Logger::Get(LogLevel_DEBUG) << "End of end blocking function" << endl;
