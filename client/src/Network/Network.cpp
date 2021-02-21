@@ -13,9 +13,7 @@
 #include <utility>
 #include <cstring>
 
-//#include <Utility/Utility.h>
-#include <Utility/Logger.h>
-
+#include "Utility/Logger.h"
 #include "NetworkError.h"
 
 Network::Network(const std::string &host, uint16_t port)

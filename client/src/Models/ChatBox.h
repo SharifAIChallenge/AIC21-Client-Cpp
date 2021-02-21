@@ -3,8 +3,8 @@
 
 using namespace std;
 #include <vector>
-#include "enums.h"
-#include "Chat.h"
+#include "Models/enums.h"
+#include "Models/Chat.h"
 
 
 class ChatBox {

@@ -2,11 +2,11 @@
 #define AIC21_CLIENT_CPP_ANT_H
 
 #include <vector>
-#include "enums.h"
-#include "Resource.h"
-#include "Cell.h"
-#include "Map.h"
-#include "CurrentStateMessage.h"
+#include "Models/enums.h"
+#include "Models/Resource.h"
+#include "Models/Cell.h"
+#include "Models/Map.h"
+#include "Models/dto/CurrentStateMessage.h"
 
 class Ant {
 

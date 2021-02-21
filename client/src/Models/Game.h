@@ -1,12 +1,12 @@
 #ifndef AIC21_CLIENT_CPP_GAME_H
 #define AIC21_CLIENT_CPP_GAME_H
 
-#include "enums.h"
-#include "Ant.h"
-#include "ChatBox.h"
-#include "Game.h"
-#include "GameConfigMessage.h"
-
+#include "Models/enums.h"
+#include "Models/Ant.h"
+#include "Models/ChatBox.h"
+#include "Models/Game.h"
+#include "Core/Message/Parse/GameConfigMessage.h"
+#include "Core/EventQueue.h"
 
 class Game {
 
@@ -25,14 +25,13 @@ class Game {
     int generate_kargar_;
     int generate_sarbaaz_;
     int rate_death_resource_;
-    Ant initialAntState(CurrentStateMessage stateMessage);
-
+    EventQueue &event_queue_;
 
     public:
 
+    explicit Game(EventQueue &eventQueue);
     Game() = default;
     Game(const Game&);
-    void initGameConfig(GameConfigMessage configMessage);
     void setCurrentState(CurrentStateMessage stateMessage);
     Ant getAnt() const;
     AntType getAntType() const;
@@ -47,6 +46,8 @@ class Game {
     int getGenerateKargar() const;
     int getGenerateSarbaaz() const;
     int getRateDeathResource() const;
+
+    friend class GameConfigMessage;
 };
 
 #endif //AIC21_CLIENT_CPP_GAME_H

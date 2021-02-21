@@ -2,9 +2,9 @@
 #define AIC21_CLIENT_CPP_CELL_H
 
 #include <vector>
-#include "enums.h"
-#include "Resource.h"
-#include "Ant.h"
+#include "Models/enums.h"
+#include "Models/Resource.h"
+#include "Models/Ant.h"
 
 
 class Cell {

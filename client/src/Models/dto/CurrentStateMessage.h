@@ -3,9 +3,9 @@
 
 using namespace std;
 #include <vector>
-#include "Chat.h"
-#include "Cell.h"
-#include "ClientCell.h"
+#include "Models/Chat.h"
+#include "Models/Cell.h"
+#include "Models/dto/ClientCell.h"
 
 class CurrentStateMessage {
 
