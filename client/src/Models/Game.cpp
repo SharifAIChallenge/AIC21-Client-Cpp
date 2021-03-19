@@ -31,11 +31,6 @@ Game::Game(const Game& game) : event_queue_(game.event_queue_) {
     rate_death_resource_ = game.getRateDeathResource();
 }
 
-// void Game::setCurrentState(CurrentStateMessage stateMessage) {
-//     chat_box_ = ChatBox(stateMessage.getChats());
-//     // ant_ = initialAntState(stateMessage);
-// }
-
 Ant Game::getAnt() const {
     return ant_;
 }
@@ -101,4 +96,8 @@ void Game::initGameConfig(GameConfigMessage *initMessage) {
     generate_kargar_ = infoJson["generate_kargar"];
     generate_sarbaaz_ = infoJson["generate_sarbaaz"];
     rate_death_resource_ = infoJson["rate_death_resource"];
+}
+
+void Game::setCurrentState(CurrentStateMessage *currentStateMessage) {
+
 }

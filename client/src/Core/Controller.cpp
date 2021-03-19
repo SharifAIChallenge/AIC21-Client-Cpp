@@ -71,22 +71,20 @@ void Controller::run() try {
 
         if (GameConfigMessage *init_message = dynamic_cast<GameConfigMessage *>(message.get())) {
             Logger::Get(LogLevel_TRACE) << "Parsing init message" << endl;
-
             m_game.initGameConfig(init_message);
-//            Game *_game = new Game(m_game);
-            //            Logger::Get(LogLevel_INFO) << "---delete---" << endl;
-            //            delete _game;
-            //            _game = new Game(m_game);
-        } else if (CurrentStateMessage *turn_message = dynamic_cast<CurrentStateMessage *>(message.get())) {
+        }
+        else if (CurrentStateMessage *turn_message = dynamic_cast<CurrentStateMessage *>(message.get())) {
             Logger::Get(LogLevel_TRACE) << "Parsing turn message" << endl;
             Game *_game = new Game(m_game);  //copying from the initial game
-            turn_message->updateGame(_game); //updating the new game
+//            turn_message->updateGame(_game); //updating the new game
+            _game->setCurrentState(turn_message); //updating the new game
 
             Logger::Get(LogLevel_INFO) << "Received Action message from server" << endl;
 
             thread *actionThread = new thread(Controller::turn_event, &m_client, _game, &(this->m_event_queue));
             m_thread_list.push_back(actionThread);
-        } else if (ShutdownMessage *shutdown_message = dynamic_cast<ShutdownMessage *>(message.get())) {
+        }
+        else if (ShutdownMessage *shutdown_message = dynamic_cast<ShutdownMessage *>(message.get())) {
             Logger::Get(LogLevel_INFO) << "Received shutdown message from server" << endl;
             // TODO : Decide about shutdown
             break;

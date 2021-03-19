@@ -45,6 +45,7 @@ public:
     int getGenerateSarbaaz() const;
     int getRateDeathResource() const;
     void initGameConfig(GameConfigMessage *initMessage);
+    void setCurrentState(CurrentStateMessage *stateMessage);
 };
 
 #endif //AIC21_CLIENT_CPP_GAME_H
