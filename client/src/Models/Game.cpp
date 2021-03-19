@@ -87,3 +87,18 @@ int Game::getGenerateSarbaaz() const {
 int Game::getRateDeathResource() const {
     return rate_death_resource_;
 }
+
+void Game::initGameConfig(GameConfigMessage *initMessage) {
+    json infoJson = initMessage->getInfo();
+    ant_type_ = (infoJson["ant_type"] == 1 ? KARGAR : SARBAZ);
+    map_width_ = infoJson["map_width"];
+    map_height_ = infoJson["map_height"];
+    base_x_ = infoJson["base_x"];
+    base_y_ = infoJson["base_y"];
+    health_kargar_ = infoJson["health_kargar"];
+    health_sarbaaz_ = infoJson["health_sarbaaz"];
+    attack_distance_ = infoJson["attack_distance"];
+    generate_kargar_ = infoJson["generate_kargar"];
+    generate_sarbaaz_ = infoJson["generate_sarbaaz"];
+    rate_death_resource_ = infoJson["rate_death_resource"];
+}

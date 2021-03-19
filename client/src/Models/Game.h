@@ -10,8 +10,7 @@
 
 class Game {
 
-    private:
-
+private:
     Ant ant_;
     ChatBox chat_box_;
     AntType ant_type_;
@@ -27,8 +26,7 @@ class Game {
     int rate_death_resource_;
     EventQueue &event_queue_;
 
-    public:
-
+public:
     explicit Game(EventQueue &eventQueue);
     Game() = default;
     Game(const Game&);
@@ -46,8 +44,7 @@ class Game {
     int getGenerateKargar() const;
     int getGenerateSarbaaz() const;
     int getRateDeathResource() const;
-
-    friend class GameConfigMessage;
+    void initGameConfig(GameConfigMessage *initMessage);
 };
 
 #endif //AIC21_CLIENT_CPP_GAME_H

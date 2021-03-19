@@ -72,7 +72,7 @@ void Controller::run() try {
         if (GameConfigMessage *init_message = dynamic_cast<GameConfigMessage *>(message.get())) {
             Logger::Get(LogLevel_TRACE) << "Parsing init message" << endl;
 
-            init_message->updateGame(&m_game);
+            m_game.initGameConfig(init_message);
 //            Game *_game = new Game(m_game);
             //            Logger::Get(LogLevel_INFO) << "---delete---" << endl;
             //            delete _game;
