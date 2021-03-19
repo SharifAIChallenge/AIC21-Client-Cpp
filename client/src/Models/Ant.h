@@ -6,7 +6,8 @@
 #include "Models/Resource.h"
 #include "Models/Cell.h"
 #include "Models/Map.h"
-#include "Models/dto/CurrentStateMessage.h"
+//#include "Models/dto/CurrentStateMessage.h"
+#include "Core/Message/Parse/CurrentStateMessage.h"
 
 class Ant {
 

@@ -29,7 +29,7 @@ private:
 
     vector<Chat> parseChats();
     vector<CellDTO> parseAroundCellsDTO();
-    static CellDTO parseCellDTO(json cellJsonForm);
+    static CellDTO parseCellDTO(const json &cellJsonForm);
 };
 
 #endif // AIC21_CLIENT_CPP_CURRENT_STATE_MESSAGE_H

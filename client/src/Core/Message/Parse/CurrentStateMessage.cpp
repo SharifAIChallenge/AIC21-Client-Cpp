@@ -106,7 +106,7 @@ AntTeam getAntTeamByInt(int antTeam) {
     }
 }
 
-CellDTO CurrentStateMessage::parseCellDTO(json cellJsonForm) {
+CellDTO CurrentStateMessage::parseCellDTO(const json &cellJsonForm) {
     int cellX = cellJsonForm["cell_x"];
     int cellY = cellJsonForm["cell_y"];
     int cellTypeInt = cellJsonForm["cell_type"];
@@ -126,7 +126,7 @@ CellDTO CurrentStateMessage::parseCellDTO(json cellJsonForm) {
 vector<CellDTO> CurrentStateMessage::parseAroundCellsDTO() {
     vector<CellDTO> output;
     json aroundCells = m_root_["around_cells"];
-    for(json cell : aroundCells) 
+    for(const json& cell : aroundCells)
         output.push_back(parseCellDTO(cell));
     return output;
 }

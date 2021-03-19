@@ -5,20 +5,16 @@
 
 class AntDTO {
 
-    public:
-
-    AntDTO() = default;
+public:
     AntDTO(AntTeam antTeam, AntType antType);
     ~AntDTO() = default;
     AntTeam getAntTeam();
     AntType getAntType();
     
 
-    private:
-
+private:
     AntTeam ant_team_;
     AntType ant_type_;
-
 };
 
 

@@ -4,11 +4,11 @@
 #include "Core/Message/Message.h"
 #include "Models/enums.h"
 
-class CreateMovementMessage final : public Message {
+class CreateEndTurnMessage final : public Message {
 
 public:
 
-    inline explicit CreateMovementMessage() : Message("6", json::object()) {
+    inline explicit CreateEndTurnMessage() : Message("6", json::object()) {
     }
 
 };

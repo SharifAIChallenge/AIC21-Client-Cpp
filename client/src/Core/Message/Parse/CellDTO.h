@@ -14,7 +14,6 @@ class CellDTO {
 
     int cell_x_;
     int cell_y_;
-    int cell_type_;
     Resource resource_;
     CellType cell_type_;
     vector<AntDTO> ants_;
