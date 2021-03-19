@@ -20,6 +20,6 @@ class ChatBox {
     ChatBox(vector<Chat> allChats);
     vector<Chat*> getAllChatsOfTurn(int turnNumber);
     vector<Chat*> getAllChats();
-}
+};
 
 #endif //AIC21_CLIENT_CPP_CHATBOX_H
