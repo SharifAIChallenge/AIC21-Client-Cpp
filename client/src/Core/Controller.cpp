@@ -73,7 +73,7 @@ void Controller::run() try {
             Logger::Get(LogLevel_TRACE) << "Parsing init message" << endl;
 
             init_message->updateGame(&m_game);
-            Game *_game = new Game(m_game);
+//            Game *_game = new Game(m_game);
             //            Logger::Get(LogLevel_INFO) << "---delete---" << endl;
             //            delete _game;
             //            _game = new Game(m_game);

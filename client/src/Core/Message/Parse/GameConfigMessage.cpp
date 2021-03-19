@@ -15,15 +15,16 @@ GameConfigMessage::GameConfigMessage(const string &json_form) : Message(json_for
 }
 
 void GameConfigMessage::updateGame(Game *game) {
-    game->ant_type_ = (m_root_["ant_type"] == 1 ? KARGAR : SARBAZ);
-    game->map_width_ = m_root_["map_width"];
-    game->map_height_ = m_root_["map_height"];
-    game->base_x_ = m_root_["base_x"];
-    game->base_y_ = m_root_["base_y"];
-    game->health_kargar_ = m_root_["health_kargar"];
-    game->health_sarbaaz_ = m_root_["health_sarbaaz"];
-    game->attack_distance_ = m_root_["attack_distance"];
-    game->generate_kargar_ = m_root_["generate_kargar"];
-    game->generate_sarbaaz_ = m_root_["generate_sarbaaz"];
-    game->rate_death_resource_ = m_root_["rate_death_resource"];
+    json infoJson = getInfo();
+    game->ant_type_ = (infoJson["ant_type"] == 1 ? KARGAR : SARBAZ);
+    game->map_width_ = infoJson["map_width"];
+    game->map_height_ = infoJson["map_height"];
+    game->base_x_ = infoJson["base_x"];
+    game->base_y_ = infoJson["base_y"];
+    game->health_kargar_ = infoJson["health_kargar"];
+    game->health_sarbaaz_ = infoJson["health_sarbaaz"];
+    game->attack_distance_ = infoJson["attack_distance"];
+    game->generate_kargar_ = infoJson["generate_kargar"];
+    game->generate_sarbaaz_ = infoJson["generate_sarbaaz"];
+    game->rate_death_resource_ = infoJson["rate_death_resource"];
 }
