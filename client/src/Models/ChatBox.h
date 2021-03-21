@@ -9,17 +9,13 @@ using namespace std;
 
 class ChatBox {
 
-    private:
-
+private:
     vector<Chat*> all_chats_;
 
-
-    public:
-
-    ChatBox() = default;
-    ChatBox(vector<Chat> allChats);
+public:
+    ChatBox(vector<Chat*> &allChats);
     vector<Chat*> getAllChatsOfTurn(int turnNumber);
-    vector<Chat*> getAllChats();
+    vector<Chat*>* getAllChats();
 };
 
 #endif //AIC21_CLIENT_CPP_CHATBOX_H

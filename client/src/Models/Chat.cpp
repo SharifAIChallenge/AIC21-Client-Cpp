@@ -1,12 +1,10 @@
 #include "Chat.h"
 
-Chat::Chat(string message, int turn) {
-    message_ = message;
-    turn_ = turn;
+Chat::Chat(string text, int turn) : text_(text), turn_(turn) {
 }
 
-string Chat::getMessage() {
-    return message_;
+string Chat::getText() {
+    return text_;
 }
 
 int Chat::getTurn() {

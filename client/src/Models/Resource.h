@@ -5,19 +5,16 @@
 
 class Resource {
 
-    public:
-
+public:
     Resource() = default;
-    Resource(ResourceType type, int amount);
+    ~Resource() = default;
+    Resource(ResourceType type, int value);
     ResourceType getType();
-    int getAmount();
+    int getValue();
 
-
-    private:
-
+private:
     ResourceType type_;
-    int amount_;
-
+    int value_;
 };
 
 #endif //AIC21_CLIENT_CPP_RESOURCE_H

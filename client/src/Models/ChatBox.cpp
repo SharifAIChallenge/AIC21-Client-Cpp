@@ -1,8 +1,7 @@
 #include "ChatBox.h"
 
-ChatBox::ChatBox(vector<Chat> allChats) {
-    for(Chat chat : allChats)
-        all_chats_.push_back(&chat);
+ChatBox::ChatBox(vector<Chat*> &allChats) {
+    all_chats_ = allChats;
 }
 
 vector<Chat*> ChatBox::getAllChatsOfTurn(int turnNumber) {
@@ -13,6 +12,6 @@ vector<Chat*> ChatBox::getAllChatsOfTurn(int turnNumber) {
     return output;
 }
 
-vector<Chat*> ChatBox::getAllChats() {
-    return all_chats_;
+vector<Chat*>* ChatBox::getAllChats() {
+    return &all_chats_;
 }

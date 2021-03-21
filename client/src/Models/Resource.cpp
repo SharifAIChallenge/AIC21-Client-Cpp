@@ -1,14 +1,14 @@
 #include "Resource.h"
 
-Resource::Resource(ResourceType type, int amount) {
+Resource::Resource(ResourceType type, int value) {
     type_ = type;
-    amount_ = amount;
+    value_ = value;
 }
 
 ResourceType Resource::getType() {
     return type_;
 }
 
-int Resource::getAmount() {
-    return amount_;
+int Resource::getValue() {
+    return value_;
 }

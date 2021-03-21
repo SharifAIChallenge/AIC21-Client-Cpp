@@ -8,8 +8,7 @@ using namespace std;
 
 class Answer {
 
-    public:
-
+public:
     Answer(Direction direction, string message, int messageValue);
     Answer(Direction direction);
     ~Answer() = default;
@@ -20,9 +19,7 @@ class Answer {
     int getMessageValue();
     void setMessageValue(int messageValue);
 
-
-    private:
-
+private:
     Direction direction_;
     string message_;
     int message_value_;

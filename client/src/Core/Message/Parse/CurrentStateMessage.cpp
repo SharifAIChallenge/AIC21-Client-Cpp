@@ -15,15 +15,15 @@ CurrentStateMessage::CurrentStateMessage(const string &json_form) : Message(json
         throw ParseError("Invalid game state message");
 }
 
-int CurrentStateMessage::getCurrentX() {
+int CurrentStateMessage::getCurrentX() const {
     return m_root_["current_x"];
 }
 
-int CurrentStateMessage::getCurrentY() {
+int CurrentStateMessage::getCurrentY() const {
     return m_root_["current_y"];
 }
 
-int CurrentStateMessage::getHealth() {
+int CurrentStateMessage::getHealth() const {
     return m_root_["health"];
 }
 

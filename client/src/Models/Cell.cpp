@@ -1,20 +1,17 @@
 #include "Cell.h"
 
 
-Cell::Cell(CellType type, int xCoordinate, int yCoordinate, Resource resource) {
-    Cell();
-    x_ = xCoordinate;
-    y_ = yCoordinate;
+Cell::Cell(CellType type, int x, int y, Resource resource) {
+    x_ = x;
+    y_ = y;
     type_ = type;
     resource_ = &resource;
-    present_ants_;
 }
 
 Cell::Cell(const Cell& obj) {
-    Cell();
     x_ = obj.x_;
     y_ = obj.y_;
-    type_ == obj.type_;
+    type_ = obj.type_;
     resource_ = obj.resource_;
     present_ants_ = obj.present_ants_;
 }
@@ -39,6 +36,6 @@ vector<const Ant*> Cell::getPresentAnts() {
     return present_ants_;
 }
 
-void Cell::addAntToCell(Ant ant) {
+void Cell::addAntToCell(const Ant &ant) {
     present_ants_.push_back(&ant);
 }

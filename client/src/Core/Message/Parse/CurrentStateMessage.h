@@ -14,18 +14,21 @@ using namespace std;
 class CurrentStateMessage final : public Message {
 
 public:
-
     explicit CurrentStateMessage(const json &root);
     explicit CurrentStateMessage(const string &json_form);
     void updateGame(Game* game);
-
+    int getCurrentX() const;
+    int getCurrentY() const;
+    Resource getCurrentResource();  //Todo delete these
+    int getHealth() const;
+    vector<Chat*> getChats() const;
 
 private:
-
-    int getCurrentX();
-    int getCurrentY();
-    int getHealth();
-    Resource getCurrentResource();
+    int current_x_;
+    int current_y_;
+    int current_resource_value_;
+    int current_resource_type_;
+    int health;
 
     vector<Chat> parseChats();
     vector<CellDTO> parseAroundCellsDTO();

@@ -5,26 +5,21 @@
 #include "Models/enums.h"
 #include "Models/Resource.h"
 #include "Models/Ant.h"
-
+using namespace std;
 
 class Cell {
 
-    public:
-
-    Cell() = default;
-    ~Cell() = default;
-    Cell(CellType type, int xCoordinate, int yCoordinate, Resource resource);
-    Cell(const Cell&);
+public:
+    Cell(CellType type, int x, int y, Resource resource);
+    Cell(const Cell&);  //Todo why is this needed?
     int getX();
     int getY();
     CellType getType();
     Resource* getResource();
     vector<const Ant*> getPresentAnts();
-    void addAntToCell(Ant ant);
+    void addAntToCell(const Ant &ant);
 
-
-    private:
-
+private:
     int x_;
     int y_;
     CellType type_;

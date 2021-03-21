@@ -1,40 +1,36 @@
 #include "Map.h"
 
-Map::Map(vector<vector<Cell>> cells, int width, int height, int manhattanDistance, int currentX, int currentY) {
-    for(vector<Cell> row : cells) {
-        vector<Cell*> thisRow; 
-        for(Cell cell : row)
-            thisRow.push_back(&cell);
-        cells_.push_back(thisRow);
-    }
+Map::Map(const vector<vector<Cell*>>& cells, int width, int height, int manhattanDistance, int currentX, int currentY) {
     width_ = width;
-    height = height_;
+    height_ = height;
     manhattan_distance_ = manhattanDistance;
-    cells_ = createCompressedCells(currentX, currentY);
+    cells_ = createCompressedCells(cells, currentX, currentY);
 }
 
 Cell* Map::getCell(int dx, int dy, int distance) {
     if (abs(dx) + abs(dy) > distance)
-        return NULL;
+        return nullptr;
     if (distance + dx >= width_ | distance + dx < 0)
-        return NULL;
+        return nullptr;
     if (distance + dy < 0 | distance + dy >= height_)
-        return NULL;
+        return nullptr;
     return cells_[distance + dy][distance + dx];
 }
 
-vector<vector<Cell*>> Map::createCompressedCells(int midX, int midY) {
+vector<vector<Cell*>> Map::createCompressedCells(const vector<vector<Cell*>>& cells, int midX, int midY) {
     vector<vector<Cell*>> compressedCells( 2 * manhattan_distance_ , vector<Cell*> (2 * manhattan_distance_));
-    int starti = max(midY - manhattan_distance_, 0), endi = min(midY + manhattan_distance_, height_);
-    int startj = max(midX - manhattan_distance_, 0), endj = min(midX + manhattan_distance_, width_);
+    int startI = max(midY - manhattan_distance_, 0), endI = min(midY + manhattan_distance_, height_);
+    int startJ = max(midX - manhattan_distance_, 0), endJ = min(midX + manhattan_distance_, width_);
     int xTransform = manhattan_distance_ - midX;
     int yTransform = manhattan_distance_ - midY;
 
-    for (int i = starti; i < endi; i++) {
-        vector<Cell*> row;
-        for (int j = startj; j < endj; j++) {
-            row.push_back(cells_[j][i]);
-            compressedCells[j + yTransform][i + xTransform] = cells_[j][i];
+    for (int i = startI; i < endI; i++) {
+        for (int j = startJ; j < endJ; j++) {
+            try {
+                compressedCells[j + yTransform][i + xTransform] = cells[j][i];
+            }
+            catch (std::out_of_range& ignored) {
+            }
         }
     }
 

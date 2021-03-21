@@ -4,7 +4,6 @@
 #include "Models/enums.h"
 #include "Models/Ant.h"
 #include "Models/ChatBox.h"
-#include "Models/Game.h"
 #include "Core/Message/Parse/GameConfigMessage.h"
 #include "Core/EventQueue.h"
 

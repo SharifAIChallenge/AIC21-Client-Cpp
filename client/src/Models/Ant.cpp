@@ -5,21 +5,22 @@ Ant::Ant(AntType type, AntTeam team)
 {
     type_ = type;
     team_ = team;
-    carrying_resource_ = NULL;
+    current_resource_ = nullptr;
+    visible_map_ = nullptr;
     x_ = -1;
     y_ = -1;
     health_ = -1;
     view_distance_ = -1;
 }
 
-Ant::Ant(AntType type, AntTeam team, int viewDistance, Map map, CurrentStateMessage state)
+Ant::Ant(AntType type, AntTeam team, int viewDistance, Map map, Resource* resource, int x, int y, int health)
 {
     type_ = type;
     team_ = team;
-    carrying_resource_ = &state.getCurrentResource();
-    x_ = state.getCurrentX();
-    y_ = state.getCurrentY();
-    health_ = state.getHealth();
+    current_resource_ = resource;
+    x_ = x;
+    y_ = y;
+    health_ = health;
     visible_map_ = &map;
     view_distance_ = viewDistance;
 }
@@ -46,12 +47,7 @@ int Ant::getViewDistance()
 
 Cell *Ant::getNeighborCell(int xStep, int yStep)
 {
-    return getMapCell(xStep, yStep);
-}
-
-Cell *Ant::getCurrentCell()
-{
-    return getNeighborCell(0, 0);
+    return visible_map_->getCell(xStep, yStep, view_distance_);
 }
 
 AntType Ant::getType()
@@ -64,12 +60,11 @@ AntTeam Ant::getTeam()
     return team_;
 }
 
-Resource *Ant::getCarryingResource()
+Resource *Ant::getCurrentResource()
 {
-    return carrying_resource_;
+    return current_resource_;
 }
 
-Cell *Ant::getMapCell(int dx, int dy)
-{
-    return visible_map_->getCell(dx, dy, view_distance_);
+Cell* Ant::getLocationCell() {
+    return getNeighborCell(0, 0);
 }

@@ -6,16 +6,13 @@ using namespace std;
 
 class Chat {
 
-    public:
-
-    Chat(string message, int turn);
-    string getMessage();
+public:
+    Chat(string text, int turn);
+    string getText();
     int getTurn();
 
-
-    private:
-
-    string message_;
+private:
+    const string text_;
     int turn_;
 
 };
