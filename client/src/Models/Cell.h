@@ -1,6 +1,8 @@
 #ifndef AIC21_CLIENT_CPP_CELL_H
 #define AIC21_CLIENT_CPP_CELL_H
 
+class Ant;
+
 #include <vector>
 #include "Models/enums.h"
 #include "Models/Resource.h"

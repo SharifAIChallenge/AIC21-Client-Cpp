@@ -1,6 +1,8 @@
 #ifndef AIC21_CLIENT_CPP_ANT_H
 #define AIC21_CLIENT_CPP_ANT_H
 
+class Map;
+
 #include <vector>
 #include "Models/enums.h"
 #include "Models/Resource.h"
@@ -12,7 +14,7 @@ class Ant {
 
 public:
     Ant(AntType type, AntTeam team);
-    Ant(AntType type, AntTeam team, int viewDistance, Map map, Resource *resource, int x, int y, int health);
+    Ant(AntType type, AntTeam team, int viewDistance, Map &map, Resource *resource, int x, int y, int health);
     Cell* getNeighborCell(int xStep, int yStep);
     int getX();
     int getY();

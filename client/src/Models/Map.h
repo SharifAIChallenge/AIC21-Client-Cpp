@@ -1,6 +1,8 @@
 #ifndef AIC21_CLIENT_CPP_MAP_H
 #define AIC21_CLIENT_CPP_MAP_H
 
+class Cell;
+
 #include "Models/Cell.h"
 #include <vector>
 using namespace std;

@@ -1,6 +1,8 @@
 #ifndef AIC21_CLIENT_CPP_CURRENT_STATE_MESSAGE_H
 #define AIC21_CLIENT_CPP_CURRENT_STATE_MESSAGE_H
 
+class Game;
+
 #include "Core/Message/Message.h"
 #include "Core/Message/Parse/ParseError.h"
 #include "Core/Message/Parse/AntDTO.h"
@@ -8,6 +10,7 @@
 #include "Models/Game.h"
 #include "Models/enums.h"
 #include <vector>
+#include "Models/Chat.h"
 using namespace std;
 
 
@@ -21,7 +24,7 @@ public:
     int getCurrentY() const;
     Resource getCurrentResource();  //Todo delete these
     int getHealth() const;
-    vector<Chat*> getChats() const;
+//    vector<Chat*> getChats() const;
 
 private:
     int current_x_;

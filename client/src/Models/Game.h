@@ -1,6 +1,10 @@
 #ifndef AIC21_CLIENT_CPP_GAME_H
 #define AIC21_CLIENT_CPP_GAME_H
 
+class GameConfigMessage;
+class CurrentStateMessage;
+class Ant;
+
 #include "Models/enums.h"
 #include "Models/Ant.h"
 #include "Models/ChatBox.h"
@@ -10,8 +14,8 @@
 class Game {
 
 private:
-    Ant ant_;
-    ChatBox chat_box_;
+    Ant *ant_;
+    ChatBox *chat_box_;
     AntType ant_type_;
     int map_width_;
     int map_height_;
@@ -29,10 +33,9 @@ public:
     explicit Game(EventQueue &eventQueue);
     Game() = default;
     Game(const Game&);
-    void setCurrentState(CurrentStateMessage stateMessage);
-    Ant getAnt() const;
+    Ant* getAnt() const;
     AntType getAntType() const;
-    ChatBox getChatBox() const;
+    ChatBox* getChatBox() const;
     int getMapWidth() const;
     int getMapHeight() const;
     int getBaseX() const;

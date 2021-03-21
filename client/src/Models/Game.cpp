@@ -31,7 +31,7 @@ Game::Game(const Game& game) : event_queue_(game.event_queue_) {
     rate_death_resource_ = game.getRateDeathResource();
 }
 
-Ant Game::getAnt() const {
+Ant* Game::getAnt() const {
     return ant_;
 }
 
@@ -39,7 +39,7 @@ AntType Game::getAntType() const {
     return ant_type_;
 }
 
-ChatBox Game::getChatBox() const {
+ChatBox* Game::getChatBox() const {
     return chat_box_;
 }
 

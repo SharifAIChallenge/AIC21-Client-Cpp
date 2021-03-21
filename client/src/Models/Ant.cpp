@@ -13,7 +13,7 @@ Ant::Ant(AntType type, AntTeam team)
     view_distance_ = -1;
 }
 
-Ant::Ant(AntType type, AntTeam team, int viewDistance, Map map, Resource* resource, int x, int y, int health)
+Ant::Ant(AntType type, AntTeam team, int viewDistance, Map &map, Resource* resource, int x, int y, int health)
 {
     type_ = type;
     team_ = team;
