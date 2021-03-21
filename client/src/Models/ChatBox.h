@@ -13,7 +13,8 @@ private:
     vector<Chat*> all_chats_;
 
 public:
-    ChatBox(vector<Chat*> &allChats);
+    ChatBox(vector<Chat*> allChats);
+    ~ChatBox();
     vector<Chat*> getAllChatsOfTurn(int turnNumber);
     vector<Chat*>* getAllChats();
 };

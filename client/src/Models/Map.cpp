@@ -10,9 +10,9 @@ Map::Map(const vector<vector<Cell*>>& cells, int width, int height, int manhatta
 Cell* Map::getCell(int dx, int dy, int distance) {
     if (abs(dx) + abs(dy) > distance)
         return nullptr;
-    if (distance + dx >= width_ | distance + dx < 0)
+    if ((distance + dx >= width_) || (distance + dx < 0))
         return nullptr;
-    if (distance + dy < 0 | distance + dy >= height_)
+    if ((distance + dy < 0) || (distance + dy >= height_))
         return nullptr;
     return cells_[distance + dy][distance + dx];
 }

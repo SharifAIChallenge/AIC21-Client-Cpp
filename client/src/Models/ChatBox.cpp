@@ -1,7 +1,15 @@
 #include "ChatBox.h"
 
-ChatBox::ChatBox(vector<Chat*> &allChats) {
-    all_chats_ = allChats;
+#include <utility>
+
+ChatBox::ChatBox(vector<Chat*> allChats) {
+    all_chats_ = std::move(allChats);
+}
+
+ChatBox::~ChatBox() {
+    for (const Chat* chat : all_chats_) {
+        delete chat;
+    }
 }
 
 vector<Chat*> ChatBox::getAllChatsOfTurn(int turnNumber) {

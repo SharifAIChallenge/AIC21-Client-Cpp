@@ -1,18 +1,6 @@
 #include "Game.h"
 #include "enums.h"
 
-// Ant Game::initialAntState(CurrentStateMessage stateMessage) {
-//     vector<vector<Cell>> cells = stateMessage.getVisibleCells(map_height_, map_width_);
-//     Map map(
-//         cells,
-//         map_width_,
-//         map_height_,
-//         attack_distance_,
-//         stateMessage.getCurrentX(),
-//         stateMessage.getCurrentY()
-//     );
-//     return Ant(ant_type_, ALLY, attack_distance_, map, stateMessage);
-// }
 
 Game::Game(EventQueue &event_queue) : event_queue_(event_queue) {
 }
@@ -99,5 +87,40 @@ void Game::initGameConfig(GameConfigMessage *initMessage) {
 }
 
 void Game::setCurrentState(CurrentStateMessage *currentStateMessage) {
+    json infoJson = currentStateMessage->getInfo();
 
+    //chat box
+    vector<Chat*> allChats;
+    for (json chatJson : infoJson["chat_box"]) {
+        allChats.push_back(new Chat(chatJson["text"], chatJson["turn"]));
+    }
+    chat_box_ = new ChatBox(allChats);
+
+    //map
+    vector<vector<Cell*>> mapCells(map_width_, vector<Cell*>(map_height_));
+    for (json cellJson : infoJson["around_cells"]) {
+        int x = cellJson["cell_x"];
+        int y = cellJson["cell_y"];
+        mapCells[x][y] = new Cell(EnumUtils::getCellTypeByInt(cellJson["cell_type"]), x, y,
+                new Resource(EnumUtils::getResourceTypeByInt(cellJson["resource_type"]), cellJson["resource_value"]));
+        for (json antJson : cellJson["ants"]) {
+            mapCells[x][y]->addAntToCell(
+                    new Ant(EnumUtils::getAntTypeByInt(antJson["ant_type"]),
+                            EnumUtils::getAntTeamByInt(antJson["ant_team"]),x, y));
+        }
+    }
+
+    Map* map = new Map(mapCells, map_width_, map_height_, attack_distance_,
+            infoJson["current_x"], infoJson["current_y"]);
+
+    //ant
+    ant_ = new Ant(ant_type_, ALLY, attack_distance_, *map,
+            new Resource(EnumUtils::getResourceTypeByInt(infoJson["current_resource_type"]),
+                    infoJson["current_resource_value"]),
+            infoJson["current_x"], infoJson["current_y"], infoJson["health"]);
+}
+
+Game::~Game() {
+    delete chat_box_;
+    delete ant_;
 }

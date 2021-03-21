@@ -13,8 +13,9 @@ class Map;
 class Ant {
 
 public:
-    Ant(AntType type, AntTeam team);
+    Ant(AntType type, AntTeam team, int x, int y);
     Ant(AntType type, AntTeam team, int viewDistance, Map &map, Resource *resource, int x, int y, int health);
+    ~Ant();
     Cell* getNeighborCell(int xStep, int yStep);
     int getX();
     int getY();

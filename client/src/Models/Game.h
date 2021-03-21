@@ -33,6 +33,7 @@ public:
     explicit Game(EventQueue &eventQueue);
     Game() = default;
     Game(const Game&);
+    ~Game();
     Ant* getAnt() const;
     AntType getAntType() const;
     ChatBox* getChatBox() const;

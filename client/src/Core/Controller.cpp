@@ -76,7 +76,6 @@ void Controller::run() try {
         else if (CurrentStateMessage *turn_message = dynamic_cast<CurrentStateMessage *>(message.get())) {
             Logger::Get(LogLevel_TRACE) << "Parsing turn message" << endl;
             Game *_game = new Game(m_game);  //copying from the initial game
-//            turn_message->updateGame(_game); //updating the new game
             _game->setCurrentState(turn_message); //updating the new game
 
             Logger::Get(LogLevel_INFO) << "Received Action message from server" << endl;
