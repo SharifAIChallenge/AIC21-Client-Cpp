@@ -41,7 +41,7 @@ void Controller::run() try {
 
     // Connect to the server
 
-    constexpr size_t MAX_RETRY_COUNT = 3;
+    constexpr size_t MAX_RETRY_COUNT = 20;
     for (size_t i = 1; i <= MAX_RETRY_COUNT && !m_network.is_connected(); ++i)
         try {
             Logger::Get(LogLevel_INFO) << "Trying to connect #" << i << endl;

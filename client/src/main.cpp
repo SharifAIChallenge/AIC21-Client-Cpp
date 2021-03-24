@@ -35,7 +35,7 @@ int main(int argc, char** argv) {
         pair<string, string> host = {"AICHostIP", "127.0.0.1"};
         pair<string, uint16_t> port = {"AICHostPort", 7099};
         pair<string, string> token = {"AICToken", "00000000000000000000000000000000"};
-        pair<string, unsigned> retry_delay = {"AICRetryDelay", 1000};
+        pair<string, unsigned> retry_delay = {"AICRetryDelay", 500};
 
         if (const char* host_env = std::getenv(host.first.c_str()))
             host.second = std::string(host_env);
