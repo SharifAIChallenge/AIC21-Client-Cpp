@@ -18,6 +18,7 @@ make
 
 After making any changes to any file just run `make` again.
 If a new source file was added (or deleted) to the project run `cmake ..` and then `make` again.
+Use executable output with `--first-team` or `--second-team` args for server.
 
 ### Windows
 
