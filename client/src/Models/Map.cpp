@@ -19,18 +19,12 @@ Cell* Map::getCell(int dx, int dy, int distance) {
 
 vector<vector<Cell*>> Map::createCompressedCells(const vector<vector<Cell*>>& cells, int midX, int midY) {
     vector<vector<Cell*>> compressedCells( 2 * manhattan_distance_ + 1 , vector<Cell*> (2 * manhattan_distance_ + 1));
-    int startI = max(midY - manhattan_distance_, 0), endI = min(midY + manhattan_distance_ + 1, height_);
-    int startJ = max(midX - manhattan_distance_, 0), endJ = min(midX + manhattan_distance_ + 1, width_);
-    int xTransform = manhattan_distance_ - midX;
-    int yTransform = manhattan_distance_ - midY;
+    int startI = max(midX - manhattan_distance_, 0), endI = min(midX + manhattan_distance_ + 1, width_);
+    int startJ = max(midY - manhattan_distance_, 0), endJ = min(midY + manhattan_distance_ + 1, height_);
 
     for (int i = startI; i < endI; i++) {
         for (int j = startJ; j < endJ; j++) {
-            try {
-                compressedCells[j + yTransform][i + xTransform] = cells[j][i];
-            }
-            catch (std::out_of_range& ignored) {
-            }
+            compressedCells[i - startI][j - startJ] = cells[i][j];
         }
     }
 
