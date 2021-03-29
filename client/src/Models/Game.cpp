@@ -20,7 +20,7 @@ Game::Game(const Game& game) : event_queue_(game.event_queue_) {
     rate_death_resource_ = game.getRateDeathResource();
 }
 
-Ant* Game::getAnt() const {
+const Ant* Game::getAnt() const {
     return ant_;
 }
 
@@ -28,7 +28,7 @@ AntType Game::getAntType() const {
     return ant_type_;
 }
 
-ChatBox* Game::getChatBox() const {
+const ChatBox* Game::getChatBox() const {
     return chat_box_;
 }
 
@@ -92,7 +92,7 @@ void Game::setCurrentState(CurrentStateMessage *currentStateMessage) {
 
     //chat box
 //    Logger::Get(LogLevel_TRACE) << "creating chat box" << endl;
-    vector<Chat*> allChats;
+    vector<const Chat*> allChats;
     for (json chatJson : infoJson["chat_box"]) {
         allChats.push_back(new Chat(chatJson["text"], chatJson["turn"]));
     }
