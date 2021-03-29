@@ -33,9 +33,9 @@ public:
     explicit Game(EventQueue &eventQueue);
     Game(const Game&);
     ~Game();
-    Ant* getAnt() const;
+    const Ant* getAnt() const;
     AntType getAntType() const;
-    ChatBox* getChatBox() const;
+    const ChatBox* getChatBox() const;
     int getMapWidth() const;
     int getMapHeight() const;
     int getBaseX() const;

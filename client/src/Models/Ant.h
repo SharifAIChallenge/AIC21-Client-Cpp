@@ -16,15 +16,15 @@ public:
     Ant(AntType type, AntTeam team, int x, int y);
     Ant(AntType type, AntTeam team, int viewDistance, Map &map, Resource *resource, int x, int y, int health);
     ~Ant();
-    Cell* getNeighborCell(int xStep, int yStep);
-    int getX();
-    int getY();
-    Cell* getLocationCell();
-    AntType getType();
-    AntTeam getTeam();
-    Resource* getCurrentResource();
-    int getHealth();
-    int getViewDistance();
+    const Cell* getNeighborCell(int xStep, int yStep) const;
+    int getX() const;
+    int getY() const;
+    const Cell* getLocationCell() const;
+    AntType getType() const;
+    AntTeam getTeam() const;
+    const Resource* getCurrentResource() const;
+    int getHealth() const;
+    int getViewDistance() const;
 
 private:
     AntType type_;

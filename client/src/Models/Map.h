@@ -12,7 +12,7 @@ class Map {
 
 public:
     Map(const vector<vector<Cell*>>& cells, int width, int height, int manhattanDistance, int currentX, int currentY);
-    Cell* getCell(int dx, int dy);
+    const Cell* getCell(int dx, int dy) const;
 
 private:
     vector<vector<Cell*>> cells_;   //Todo vector<vector*>* ?

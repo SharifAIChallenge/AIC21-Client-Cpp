@@ -5,7 +5,7 @@
 using namespace std;
 
 Answer *AI::turn(Game *game) {
-    Ant* me = game->getAnt();
+    const Ant* me = game->getAnt();
     cout << me->getHealth() << " " << me->getTeam() << endl;
 
     int viewDist = me->getViewDistance();
@@ -13,7 +13,7 @@ Answer *AI::turn(Game *game) {
     if (me->getType() == KARGAR) {
         for (int i = 0; i < viewDist; i++) {
             for (int j = 0; j < viewDist; j++) {
-                Cell* cell = game->getAnt()->getNeighborCell(i, j);
+                const Cell* cell = game->getAnt()->getNeighborCell(i, j);
                 if (cell->getResource()->getType() != NONE) {
                     targetX = cell->getX();
                     targetY = cell->getY();

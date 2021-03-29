@@ -9,7 +9,7 @@ Map::Map(const vector<vector<Cell*>>& cells, int width, int height, int manhatta
     ant_y_ = currentY;
 }
 
-Cell* Map::getCell(int dx, int dy) {
+const Cell* Map::getCell(int dx, int dy) const {
     int x = ant_x_ + dx;
     int y = ant_y_ + dy;
     if (x >= width_ || x < 0 || y >= height_ || y < 0)
