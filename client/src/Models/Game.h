@@ -28,6 +28,10 @@ private:
     int generate_sarbaaz_;
     int rate_death_resource_;
     EventQueue &event_queue_;
+    void initGameConfig(GameConfigMessage *initMessage);
+    void setCurrentState(CurrentStateMessage *stateMessage);
+
+    friend class Controller;
 
 public:
     explicit Game(EventQueue &eventQueue);
@@ -46,8 +50,6 @@ public:
     int getGenerateKargar() const;
     int getGenerateSarbaaz() const;
     int getRateDeathResource() const;
-    void initGameConfig(GameConfigMessage *initMessage);
-    void setCurrentState(CurrentStateMessage *stateMessage);
 };
 
 #endif //AIC21_CLIENT_CPP_GAME_H

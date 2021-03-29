@@ -20,7 +20,6 @@ public:
     CellType getType() const;
     const Resource* getResource() const;
     vector<const Ant*> getPresentAnts() const;
-    void addAntToCell(const Ant *ant);
 
 private:
     int x_;
@@ -28,6 +27,9 @@ private:
     CellType type_;
     Resource* resource_;
     vector<const Ant*> present_ants_;
+    void addAntToCell(const Ant *ant);
+
+    friend class Game;
 };
 
 
