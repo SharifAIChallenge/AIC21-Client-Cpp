@@ -19,7 +19,7 @@ public:
     int getY() const;
     CellType getType() const;
     const Resource* getResource() const;
-    vector<const Ant*> getPresentAnts() const;
+    const vector<const Ant*>& getPresentAnts() const;
 
 private:
     int x_;

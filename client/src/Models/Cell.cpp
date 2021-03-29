@@ -39,7 +39,7 @@ const Resource* Cell::getResource() const {
     return resource_;
 }
 
-vector<const Ant*> Cell::getPresentAnts() const {
+const vector<const Ant*>& Cell::getPresentAnts() const {
     return present_ants_;
 }
 

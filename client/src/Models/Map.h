@@ -21,7 +21,6 @@ private:
     int manhattan_distance_;
     int ant_x_;
     int ant_y_;
-
 };
 
 #endif //AIC21_CLIENT_CPP_MAP_H

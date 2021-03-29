@@ -20,6 +20,6 @@ vector<const Chat*> ChatBox::getAllChatsOfTurn(int turnNumber) const {
     return output;
 }
 
-vector<const Chat*> ChatBox::getAllChats() const {
+const vector<const Chat*>& ChatBox::getAllChats() const {
     return all_chats_;
 }

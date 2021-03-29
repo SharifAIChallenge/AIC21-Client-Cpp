@@ -16,7 +16,7 @@ public:
     explicit ChatBox(const vector<const Chat*>& allChats);
     ~ChatBox();
     vector<const Chat*> getAllChatsOfTurn(int turnNumber) const;
-    vector<const Chat*> getAllChats() const;
+    const vector<const Chat*>& getAllChats() const;
 };
 
 #endif //AIC21_CLIENT_CPP_CHATBOX_H
