@@ -125,13 +125,27 @@ void Game::setCurrentState(CurrentStateMessage *currentStateMessage) {
             new Resource(EnumUtils::getResourceTypeByInt(infoJson["current_resource_type"]),
                     infoJson["current_resource_value"]),
             infoJson["current_x"], infoJson["current_y"], infoJson["health"]);
+
+    //attacks
+    for (json attackJson : infoJson["attacks"]) {
+        attacks.push_back(new Attack(attackJson["attacker_col"], attackJson["attacker_row"],
+                attackJson["defender_col"], attackJson["defender_row"],
+                attackJson["is_attacker_enemy"]));
+    }
 }
 
 Game::~Game() {
     delete chat_box_;
     delete ant_;
+    for (const Attack* attack: attacks) {
+        delete attack;
+    }
 }
 
 int Game::getViewDistance() const {
     return view_distance_;
+}
+
+const vector<const Attack *> &Game::getAttacks() const {
+    return attacks;
 }
