@@ -10,9 +10,10 @@ Ant::Ant(AntType type, AntTeam team, int x, int y) {
     y_ = y;
     health_ = -1;
     view_distance_ = -1;
+    attack_distance_ = -1;
 }
 
-Ant::Ant(AntType type, AntTeam team, int viewDistance, Map &map, Resource *resource, int x, int y, int health) {
+Ant::Ant(AntType type, AntTeam team, int viewDistance, int attackDistance, Map &map, Resource *resource, int x, int y, int health) {
     type_ = type;
     team_ = team;
     current_resource_ = resource;
@@ -21,6 +22,7 @@ Ant::Ant(AntType type, AntTeam team, int viewDistance, Map &map, Resource *resou
     health_ = health;
     visible_map_ = &map;
     view_distance_ = viewDistance;
+    attack_distance_ = attackDistance;
 }
 
 Ant::~Ant() {
@@ -62,4 +64,8 @@ const Resource *Ant::getCurrentResource() const {
 
 const Cell *Ant::getLocationCell() const {
     return getNeighborCell(0, 0);
+}
+
+int Ant::getAttackDistance() const {
+    return attack_distance_;
 }

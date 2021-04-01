@@ -24,6 +24,7 @@ private:
     int health_kargar_;
     int health_sarbaaz_;
     int attack_distance_;
+    int view_distance_;
     int generate_kargar_;
     int generate_sarbaaz_;
     int rate_death_resource_;
@@ -47,6 +48,7 @@ public:
     int getHealthKargar() const;
     int getHealthSarbaaz() const;
     int getAttackDistance() const;
+    int getViewDistance() const;
     int getGenerateKargar() const;
     int getGenerateSarbaaz() const;
     int getRateDeathResource() const;

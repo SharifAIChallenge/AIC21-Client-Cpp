@@ -18,6 +18,7 @@ Game::Game(const Game& game) : event_queue_(game.event_queue_) {
     generate_kargar_ = game.getGenerateKargar();
     generate_sarbaaz_ = game.getGenerateSarbaaz();
     rate_death_resource_ = game.getRateDeathResource();
+    view_distance_ = game.getViewDistance();
 }
 
 const Ant* Game::getAnt() const {
@@ -85,6 +86,7 @@ void Game::initGameConfig(GameConfigMessage *initMessage) {
     generate_kargar_ = infoJson["generate_kargar"];
     generate_sarbaaz_ = infoJson["generate_sarbaaz"];
     rate_death_resource_ = infoJson["rate_death_resource"];
+    view_distance_ = infoJson["view_distance"];
 }
 
 void Game::setCurrentState(CurrentStateMessage *currentStateMessage) {
@@ -119,7 +121,7 @@ void Game::setCurrentState(CurrentStateMessage *currentStateMessage) {
 
     //ant
 //    Logger::Get(LogLevel_TRACE) << "creating ant" << endl;
-    ant_ = new Ant(ant_type_, ALLY, attack_distance_, *map,
+    ant_ = new Ant(ant_type_, ALLY, view_distance_, attack_distance_, *map,
             new Resource(EnumUtils::getResourceTypeByInt(infoJson["current_resource_type"]),
                     infoJson["current_resource_value"]),
             infoJson["current_x"], infoJson["current_y"], infoJson["health"]);
@@ -128,4 +130,8 @@ void Game::setCurrentState(CurrentStateMessage *currentStateMessage) {
 Game::~Game() {
     delete chat_box_;
     delete ant_;
+}
+
+int Game::getViewDistance() const {
+    return view_distance_;
 }
