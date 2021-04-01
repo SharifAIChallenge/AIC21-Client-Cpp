@@ -6,7 +6,6 @@ using namespace std;
 
 Answer *AI::turn(Game *game) {
     const Ant* me = game->getAnt();
-    cout << me->getHealth() << " " << me->getTeam() << endl;
 
     int viewDist = me->getViewDistance();
     int targetX = -1, targetY = -1;
@@ -14,7 +13,7 @@ Answer *AI::turn(Game *game) {
         for (int i = 0; i < viewDist; i++) {
             for (int j = 0; j < viewDist; j++) {
                 const Cell* cell = game->getAnt()->getNeighborCell(i, j);
-                if (cell->getResource()->getType() != NONE) {
+                if (cell && cell->getResource()->getType() != NONE) {
                     targetX = cell->getX();
                     targetY = cell->getY();
                     break;
