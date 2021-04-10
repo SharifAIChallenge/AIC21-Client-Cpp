@@ -6,9 +6,10 @@
 
 class AI {
 public:
-
     Answer* turn(Game *game);
 
+private:
+    static int agent_id;    //Random generated Id for optional use
 };
 
 #endif // AIC21_CLIENT_CPP_AI_H

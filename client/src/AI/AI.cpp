@@ -4,6 +4,8 @@
 
 using namespace std;
 
+int AI::agent_id = (srand(time(nullptr)), rand());
+
 Answer *AI::turn(Game *game) {
     const Ant* me = game->getAnt();
 
