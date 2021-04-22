@@ -28,7 +28,7 @@ Message::Message(const string &type, const json &info) {
 }
 
 string Message::toString() const {
-    return m_root_.dump();
+    return m_root_.dump(-1,' ',false, nlohmann::json::error_handler_t::replace);
 }
 
 void Message::setType(const string &type) {
