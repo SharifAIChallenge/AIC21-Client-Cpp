@@ -19,9 +19,9 @@ ResourceType EnumUtils::getResourceTypeByInt(int resourceType) {
     switch (resourceType)
     {
         case 0:
-            return BREAD;
-        case 1:
             return GRASS;
+        case 1:
+            return BREAD;
         case 2:
             return NONE;
         default:
