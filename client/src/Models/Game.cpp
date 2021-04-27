@@ -12,11 +12,11 @@ Game::Game(const Game& game) : event_queue_(game.event_queue_) {
     map_height_ = game.getMapHeight();
     base_x_ = game.getBaseX();
     base_y_ = game.getBaseY();
-    health_kargar_ = game.getHealthKargar();
-    health_sarbaaz_ = game.getHealthSarbaaz();
+    health_queen_ = game.getHealthQueen();
+    health_scorpion_ = game.getHealthScorpion();
     attack_distance_ = game.getAttackDistance();
-    generate_kargar_ = game.getGenerateKargar();
-    generate_sarbaaz_ = game.getGenerateSarbaaz();
+    generate_queen_ = game.getGenerateQueen();
+    generate_scorpion_ = game.getGenerateScorpion();
     rate_death_resource_ = game.getRateDeathResource();
     view_distance_ = game.getViewDistance();
 
@@ -53,24 +53,24 @@ int Game::getBaseY() const {
     return base_y_;
 }
 
-int Game::getHealthKargar() const {
-    return health_kargar_;
+int Game::getHealthQueen() const {
+    return health_queen_;
 }
 
-int Game::getHealthSarbaaz() const {
-    return health_sarbaaz_;
+int Game::getHealthScorpion() const {
+    return health_scorpion_;
 }
 
 int Game::getAttackDistance() const {
     return attack_distance_;
 }
 
-int Game::getGenerateKargar() const {
-    return generate_kargar_;
+int Game::getGenerateQueen() const {
+    return generate_queen_;
 }
 
-int Game::getGenerateSarbaaz() const {
-    return generate_sarbaaz_;
+int Game::getGenerateScorpion() const {
+    return generate_scorpion_;
 }
 
 int Game::getRateDeathResource() const {
@@ -84,11 +84,11 @@ void Game::initGameConfig(GameConfigMessage *initMessage) {
     map_height_ = infoJson["map_height"];
     base_x_ = infoJson["base_x"];
     base_y_ = infoJson["base_y"];
-    health_kargar_ = infoJson["health_kargar"];
-    health_sarbaaz_ = infoJson["health_sarbaaz"];
+    health_queen_ = infoJson["health_kargar"];
+    health_scorpion_ = infoJson["health_sarbaaz"];
     attack_distance_ = infoJson["attack_distance"];
-    generate_kargar_ = infoJson["generate_kargar"];
-    generate_sarbaaz_ = infoJson["generate_sarbaaz"];
+    generate_queen_ = infoJson["generate_kargar"];
+    generate_scorpion_ = infoJson["generate_sarbaaz"];
     rate_death_resource_ = infoJson["rate_death_resource"];
     view_distance_ = infoJson["view_distance"];
 
