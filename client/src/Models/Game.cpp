@@ -19,6 +19,10 @@ Game::Game(const Game& game) : event_queue_(game.event_queue_) {
     generate_sarbaaz_ = game.getGenerateSarbaaz();
     rate_death_resource_ = game.getRateDeathResource();
     view_distance_ = game.getViewDistance();
+
+    for (const Base* base: game.getBases()) {
+        bases_.push_back(new Base(base->getX(), base->getY()));
+    }
 }
 
 const Ant* Game::getAnt() const {
@@ -87,6 +91,10 @@ void Game::initGameConfig(GameConfigMessage *initMessage) {
     generate_sarbaaz_ = infoJson["generate_sarbaaz"];
     rate_death_resource_ = infoJson["rate_death_resource"];
     view_distance_ = infoJson["view_distance"];
+
+    for (json baseJson: infoJson["bases"]) {
+        bases_.push_back(new Base(baseJson["x"], baseJson["y"]));
+    }
 }
 
 void Game::setCurrentState(CurrentStateMessage *currentStateMessage) {
@@ -141,6 +149,10 @@ Game::~Game() {
     for (const Attack* attack: attacks) {
         delete attack;
     }
+    // bases get copied to new game before destruction
+    for (const Base* base: bases_) {
+        delete base;
+    }
 }
 
 int Game::getViewDistance() const {
@@ -149,4 +161,8 @@ int Game::getViewDistance() const {
 
 const vector<const Attack *> &Game::getAttacks() const {
     return attacks;
+}
+
+const vector<const Base *> &Game::getBases() const {
+    return bases_;
 }

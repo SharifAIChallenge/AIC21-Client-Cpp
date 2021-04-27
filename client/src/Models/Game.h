@@ -11,6 +11,7 @@ class Ant;
 #include "Core/Message/Parse/GameConfigMessage.h"
 #include "Core/EventQueue.h"
 #include "Attack.h"
+#include "Base.h"
 
 class Game {
 
@@ -33,6 +34,7 @@ private:
     vector<const Attack*> attacks;
     void initGameConfig(GameConfigMessage *initMessage);
     void setCurrentState(CurrentStateMessage *stateMessage);
+    vector<const Base*> bases_;
 
     friend class Controller;
 
@@ -55,6 +57,7 @@ public:
     int getGenerateSarbaaz() const;
     int getRateDeathResource() const;
     const vector<const Attack*>& getAttacks() const;
+    const vector<const Base*>& getBases() const;
 };
 
 #endif //AIC21_CLIENT_CPP_GAME_H
